@@ -29,7 +29,7 @@ end
 
 
 #### config.ru
-This is the rackup file, which I use to mount and run the application, locally with [Shotgun]() and in production with [Phusion Passenger]().
+This is the rackup file, which I use to mount and run the application, locally with [Shotgun](https://github.com/rtomayko/shotgun) and in production with [Phusion Passenger](https://github.com/phusion/passenger).
 
 ```ruby
 require './app'
