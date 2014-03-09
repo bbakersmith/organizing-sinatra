@@ -99,10 +99,10 @@ In order to make my apps
 
 
 ### Multiple Apps
-To manage complexity and maintain a separation of concerns, I create separate Sinatra apps for distinctly different processes or projects. I prefer to do this using a single barebones parent Rack app, with a structure like the following.
+To manage complexity and maintain a separation of concerns, I create separate Sinatra apps for distinctly different processes or components. I prefer to do this using a single barebones parent Rack app, with a structure like the following.
 
 - apps/
-    - first-app/
+    - basic-app/
       ...
 
     - second-app/
@@ -115,27 +115,29 @@ To manage complexity and maintain a separation of concerns, I create separate Si
 - Gemfile
 
 ```ruby
-# config.ru
-
-require './app'
-
-map '/first-app' do
-  run FirstApp
-end
-
-map '/second-app' do
-  run SecondApp
-end
-```
-
-```ruby
 # app.rb
 
 require 'bundler'
 Bundler.require
 
-require './apps/first-app/app'
+require './apps/basic-app/app'
 require './apps/second-app/app'
+```
+
+The following will mount the SecondApp modular app with a root of `/second-app/` (http://yourapp.com/second-app). Like Sinatra's routes, Rack routes cascade so `'/'` will catch all other requests and delegate them to BasicApp.
+
+```ruby
+# config.ru
+
+require './app'
+
+map '/second-app' do
+  run SecondApp
+end
+
+map '/' do
+  run BasicApp
+end
 ```
 
 
