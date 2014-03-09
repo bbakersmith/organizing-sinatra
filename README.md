@@ -1,5 +1,7 @@
-rganizing Sinatra
+# Organizing Sinatra
 An exploration of Sinatra file organization.
+
+Currently two branches exist in this repo with their own app structures: `basic` and `multi-app`.
 
 
 
