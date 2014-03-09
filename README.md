@@ -114,6 +114,8 @@ To manage complexity and maintain a separation of concerns, I create separate Si
 
 - Gemfile
 
+The following will mount the SecondApp modular app with a root of `/second-app/` (http://yourapp.com/second-app). Like Sinatra's routes, Rack routes cascade so `'/'` will catch all other requests and delegate them to BasicApp.
+
 ```ruby
 # app.rb
 
@@ -123,8 +125,6 @@ Bundler.require
 require './apps/basic-app/app'
 require './apps/second-app/app'
 ```
-
-The following will mount the SecondApp modular app with a root of `/second-app/` (http://yourapp.com/second-app). Like Sinatra's routes, Rack routes cascade so `'/'` will catch all other requests and delegate them to BasicApp.
 
 ```ruby
 # config.ru
@@ -139,6 +139,8 @@ map '/' do
   run BasicApp
 end
 ```
+
+As with all things Sinatra there are a lot of ways to tailor the modular app structure to specific needs. 
 
 
 
